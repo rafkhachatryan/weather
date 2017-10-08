@@ -6,12 +6,10 @@ var f = "data/info.json";
 var mouth = ["january","february","march","april","may","june","july","august","september","october","november","december"];
 var year = ["2009","2010","2011","2012","2013","2014","2015","2016"];
 var urlbase  =  "https://pogoda.mail.ru/prognoz/erevan/";
-var url = encodeURI("https://pogoda.mail.ru/prognoz/erevan/january-2009/");
 var uri = [];
 var mydata ;
 var a;
 var amis,tari;
-//var arr = [];
 
 forEach(year, function(yea, index, arr) 
 {
@@ -31,11 +29,11 @@ forEach(year, function(yea, index, arr)
                 console.log("--------------------------------" +  "\n" + data.text() + mou + yea);
 
                  var mydata={
-                    'aravot':a[0],
-                    'gisher':a[1],
-                    'amis':mou,
-                    'tari':yea,
-                    'or':day
+                    'aravot':parseFloat(a[0]),
+                    'gisher':parseFloat(a[1]),
+                    'amis':parseInt(mouth.indexOf(mou)),
+                    'tari':parseFloat(yea),
+                    'or':parseInt(day)
                  };
                  uri.push(mydata);
                  fs.writeFile(f,JSON.stringify(uri)); 
@@ -50,7 +48,6 @@ forEach(year, function(yea, index, arr)
 
 
 });
-
 
 
 
